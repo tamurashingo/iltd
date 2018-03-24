@@ -1,0 +1,13 @@
+{
+    "appname": "タスク管理",
+    "server": {
+        "port": "3000"
+    },
+    "db": {
+        "username": "root",
+        "password": "password",
+        "host": "localhost",
+        "port": "3306",
+        "dbname": "iltd"
+    }
+}

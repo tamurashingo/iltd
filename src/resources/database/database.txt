@@ -1,0 +1,20 @@
+CREATE DATABASE `iltd` /*!40100 COLLATE 'utf8_general_ci' */
+
+CREATE TABLE `t_task` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`type` VARCHAR(50),
+	`name` VARCHAR(255),
+	`plan` VARCHAR(50),
+	`result` VARCHAR(50),
+	`unit` VARCHAR(255),
+	`due` VARCHAR(50),
+	`person` VARCHAR(255),
+	`task_status` VARCHAR(50),
+	`create_date` DATETIME NOT NULL,
+	`status_update_date` DATETIME NOT NULL,
+	`desc_update_date` DATETIME NOT NULL,
+	PRIMARY KEY (`id`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+;

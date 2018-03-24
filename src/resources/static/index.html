@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="assets/css/jquery.growl.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+  </head>
+  <body class="body-board-view" style="background-color: rgb(0, 121, 191);">
+    <div id="task-form" title="タスク">
+      <form>
+        <fieldset>
+            <input type="hidden" id="taskid" name="taskid" value="">
+          <div>
+            <label for="tasktype">タスク種別</label>
+            <select name="tasktype" id="tasktype" class="form-column">
+              <option value="要件定義">要件定義</option>
+              <option value="基本設計">基本設計</option>
+              <option value="詳細設計">詳細設計</option>
+              <option value="製造">製造</option>
+              <option value="単体試験">単体試験</option>
+              <option value="結合試験">結合試験</option>
+              <option value="総合試験">総合試験</option>
+              <option value="リリース">リリース</option>
+              <option value="運用保守">運用保守</option>
+              <option value="その他">その他</option>
+            </select>
+          </div>
+          <div>
+            <label for="taskname">タスク名</label>
+            <input type="text" name="taskname" id="taskname" class="text ui-widget-content ui-corner-all form-column">
+          </div>
+          <div>
+            <label for="plan">アウトプット(予定)</label>
+            <input type="number" name="plan" id="plan" class="text ui-widget-content ui-corner-all form-column">
+          </div>
+          <div>
+            <label for="result">アウトプット(実績)</label>
+            <input type="number" name="result" id="result" class="text ui-widget-content ui-corner-all form-column">
+          </div>
+          <div>
+            <label for="unit">単位(ページ/機能/項目/回/etc)</label>
+            <input type="text" name="unit" id="unit" class="text ui-widget-content ui-corner-all form-column">
+          </div>
+          <div>
+            <label for="due">期限(yyyy/mm/dd)</label>
+            <input type="text" name="due" id="due" class="text ui-widget-content ui-corner-all form-column">
+          </div>
+          <div>
+            <label for="person">担当</label>
+            <input type="text" name="person" id="person" value="default" class="text ui-widget-content ui-corner-all form-column">
+          </div>
+          <input type="submit" style="position: absolute; top: -1000px;">
+        </fieldset>
+      </form>
+    </div>
+
+
+
+    <div id="surface">
+      <div id="header">
+        <a class="header-btn header-boards" href="#">
+          <i class="fa fa-file-text-o fa-lg" style="padding-left: 5px;"></i>
+          <span class="header-btn-text" id="appname"></span>
+        </a>
+        <a class="header-btn header-boards" href="#" id="create-task">
+          <span style="color: #000;"><i class="fa fa-plus"></i> タスク追加</span>
+        </a>
+
+        <div class="header-search">
+          <div class="header-button">
+
+            <a class="header-btn header-boards" href="#" id="refresh-task">
+              <span style="color: #000;"><i class="fa fa-refresh"></i> 更新</span>
+            </a>
+            
+            <span class="header-boards header-label">
+              ユーザ:
+            </span>
+            <select name="user" id="search-user" size="1" class="header-boards header-btn-text" style="min-width: 100px;">
+              <option value=""></option>
+              <option value="aaaa">aaaa</option>
+              <option value="bbbb">bbbb</option>
+              <option value="cccc">cccc</option>
+              <option value="dddd">dddd</option>
+            </select>
+
+            <span class="header-boards header-label" style="padding-left: 10px;">
+              最終更新日:
+            </span>
+            <input type="text" id="datepicker" class="header-boards header-btn-text" size="10"/>
+            
+          </div>
+
+        </div>
+
+      </div>
+
+      <div id="content">
+    
+      <div id="board" class="u-fancy-scrollbar">
+        <div class="list-wrapper">
+          <div class="list">
+            <div class="list-header">
+              <h2 class="list-header-name">To Do</h2>
+            </div>
+            <div class="list-cards" id="task-todo">
+              
+              <!-- div class="list-card js-card" id="task-00001">
+                <div style="display: none;">
+                  <div class="column-taskid">task-0001</div>
+                  <div class="column-tasktype">リリース</div>
+                  <div class="column-taskname">[xxxxx案件]機能追加</div>
+                  <div class="column-plan">1</div>
+                  <div class="column-result">0</div>
+                  <div class="column-unit">回</div>
+                  <div class="column-due">2015/08/31</div>
+                  <div class="column-person">tamura</div>
+                </div>
+                <div class="title-header">
+                  リリース : [xxxxxx案件]機能追加
+                </div>
+                
+                <div align="right">0 / 1 回</div>
+                <div align="right">Due: 2015/08/31</div>
+                <div align="right">by tamura</div>
+              </div -->
+            </div>
+          </div>
+        </div>
+
+        <div class="list-wrapper">
+          <div class="list">
+            <div class="list-header">
+              <h2 class="list-header-name">In Progress</h2>
+            </div>
+            <div class="list-cards" id="task-inprogress">
+            </div>
+          </div>
+        </div>
+        
+        <div class="list-wrapper">
+          <div class="list">
+            <div class="list-header">
+              <h2 class="list-header-name">Done</h2>
+            </div>
+            <div class="list-cards" id="task-done">
+            </div>
+          </div>
+        </div>
+        
+        <div class="list-wrapper">
+          <div class="list">
+            <div class="list-header">
+              <h2 class="list-header-name">Archive</h2>
+            </div>
+            <div class="list-cards" id="task-archive">
+            </div>
+          </div>
+        </div>
+
+      </div>
+      </div>
+    </div>
+  <script src="assets/js/jquery-2.1.4.min.js"></script>
+  <script src="assets/js/jquery-ui.min.js"></script>
+  <script src="assets/js/jquery.ui.datepicker-ja.js"></script>
+  <script src="assets/js/jquery.growl.js"></script>
+  <script src="assets/js/app.js"></script>>
+</body>
+</html>
