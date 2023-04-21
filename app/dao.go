@@ -24,7 +24,7 @@ package app
 import (
 	"container/list"
 
-	log "github.com/Sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 )
 
 const (

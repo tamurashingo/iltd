@@ -24,11 +24,11 @@ package main
 import (
 	"os"
 
-	"github.com/codegangsta/cli"
+	"github.com/urfave/cli"
 
-	log "github.com/Sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 
-	"./app"
+	"github.com/tamurashingo/iltd/app"
 )
 
 func main() {
